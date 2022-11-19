@@ -6,6 +6,12 @@
 [![CI/CD](https://github.com/rclement/feedit/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/rclement/feedit/actions/workflows/ci-cd.yml)
 [![Schedule](https://github.com/rclement/feedit/actions/workflows/schedule.yml/badge.svg)](https://github.com/rclement/feedit/actions/workflows/schedule.yml)
 
+Feeds are updated daily and hosted statically on GitHub Pages.
+
+| Website | RSS | Atom |
+| --- | --- | --- |
+| [URSSAF Autoentrepreneur](https://www.autoentrepreneur.urssaf.fr) | [Link](https://rclement.github.io/feedit/urssaf_autoentrepreneur/feed.rss) | [Link](https://rclement.github.io/feedit/urssaf_autoentrepreneur/feed.atom) |
+
 ## Usage
 
 ```bash
