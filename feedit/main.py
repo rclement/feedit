@@ -25,7 +25,7 @@ def generate_feed(index: PageIndex, entries: list[PageEntry]) -> FeedGenerator:
     for entry in sorted(entries, key=lambda x: x.date):
         feed_entry = feed.add_entry()
         feed_entry.id(entry.link)
-        feed_entry.updated(entry.date)
+        feed_entry.published(entry.date)
         feed_entry.title(entry.title)
         feed_entry.description(entry.summary)
         feed_entry.content(entry.summary)
