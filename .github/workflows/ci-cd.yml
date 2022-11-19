@@ -3,7 +3,7 @@ name: CI/CD
 on: [push]
 
 jobs:
-  build:
+  qa:
     name: QA
     runs-on: ubuntu-latest
     steps:
