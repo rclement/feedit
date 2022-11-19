@@ -3,6 +3,9 @@
 > Generate static RSS/Atom feeds for websites without it.
 > "Just feed-it!"
 
+[![CI/CD](https://github.com/rclement/feedit/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/rclement/feedit/actions/workflows/ci-cd.yml)
+[![Schedule](https://github.com/rclement/feedit/actions/workflows/schedule.yml/badge.svg)](https://github.com/rclement/feedit/actions/workflows/schedule.yml)
+
 ## Usage
 
 ```bash
