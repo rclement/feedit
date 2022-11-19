@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    name: Build
+    name: QA
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --upgrade pipenv
           pipenv install --dev --deploy
-      - name: QA
+      - name: Run QA suite
         run: |
           pipenv run inv qa
