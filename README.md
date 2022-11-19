@@ -12,6 +12,44 @@
 python -m feedit.main fetch --output feeds
 ```
 
+## Development
+
+### Python environment
+
+```
+pipenv install -d
+pipenv run inv qa
+```
+
+### VSCode
+
+If using VSCode, use the following configuration in `.vscode/launch.json`:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Module",
+      "type": "python",
+      "request": "launch",
+      "module": "feedit.main",
+      "args": ["fetch", "--output", "feeds"],
+      "justMyCode": false
+    },
+    {
+      "name": "tests",
+      "type": "python",
+      "request": "test",
+      "justMyCode": false,
+      "env": {
+        "CI": "false"
+      }
+    }
+  ]
+}
+```
+
 ## Inspiration
 
 - https://github.com/RSS-Bridge/rss-bridge
