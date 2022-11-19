@@ -18,3 +18,9 @@ python -m feedit.main fetch --output feeds
 - https://github.com/damoeb/rss-proxy
 - https://github.com/qsniyg/rssit
 - https://github.com/DIYgod/RSSHub
+
+## License
+
+Licensed under GNU Affero General Public License v3.0 (AGPLv3)
+
+Copyright (c) 2022 - present Romain Clement
