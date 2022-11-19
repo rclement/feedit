@@ -29,6 +29,7 @@ def generate_feed(index: PageIndex, entries: list[PageEntry]) -> FeedGenerator:
         feed_entry.title(entry.title)
         feed_entry.description(entry.summary)
         feed_entry.content(entry.summary)
+        feed_entry.link(dict(href=entry.link))
 
     return feed
 
