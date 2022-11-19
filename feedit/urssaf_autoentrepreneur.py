@@ -119,19 +119,27 @@ def fetch_page_index() -> PageIndex:
         for i in range(num_pages)
     ]
 
+    title = (
+        el.get_text()
+        if (el := soup.select_one("head title"))
+        else "autoentrepreneur.urssaf.fr"
+    )
+    description = (
+        str(el.get("content", ""))
+        if (el := soup.select_one('head meta[name="description"]'))
+        else title
+    )
+    logo_url = (
+        makeurl(str(el.get("href", "")))
+        if (el := soup.select_one('head link[rel="icon"]'))
+        else ""
+    )
+
     return PageIndex(
         base_url=base_url,
-        title=el.get_text() if (el := soup.select_one("head title")) else "",
-        description=(
-            str(el.get("content", ""))
-            if (el := soup.select_one('head meta[name="description"]'))
-            else ""
-        ),
-        logo_url=(
-            makeurl(str(el.get("href", "")))
-            if (el := soup.select_one('head link[rel="icon"]'))
-            else ""
-        ),
+        title=title,
+        description=description,
+        logo_url=logo_url,
         language=str(soup.get("lang", "fr")),
         urls=urls,
     )
