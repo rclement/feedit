@@ -32,6 +32,11 @@ jobs:
           timestamp=$(date -u)
           git commit -m "Latest data: ${timestamp}" || exit 0
           git push
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: feeds
 
   deploy:
     name: Deploy
@@ -49,6 +54,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: feeds
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
