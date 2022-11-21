@@ -10,6 +10,7 @@ Feeds are updated daily and hosted statically on GitHub Pages.
 
 | Website | RSS | Atom |
 | --- | --- | --- |
+| [URSSAF](https://www.urssaf.fr) | [Link](https://rclement.github.io/feedit/urssaf/feed.rss) | [Link](https://rclement.github.io/feedit/urssaf/feed.atom) |
 | [URSSAF Autoentrepreneur](https://www.autoentrepreneur.urssaf.fr) | [Link](https://rclement.github.io/feedit/urssaf_autoentrepreneur/feed.rss) | [Link](https://rclement.github.io/feedit/urssaf_autoentrepreneur/feed.atom) |
 
 ## Usage

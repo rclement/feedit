@@ -5,13 +5,15 @@ from pathlib import Path
 from feedit import main
 
 
-@pytest.mark.vcr
-def test_fetch_success(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+@pytest.mark.block_network
+def test_fetch_dummy_success(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.setattr(
         "sys.argv",
         [
             "feedit.main",
             "fetch",
+            "--sources",
+            "feedit.dummy",
             "--output",
             str(tmp_path),
             "--max-workers",
@@ -22,8 +24,7 @@ def test_fetch_success(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     main.main()
 
     suffixes = [".rss", ".atom"]
-    feeds = list(tmp_path.glob("**/*"))
-    assert len(feeds) > 0
-    for feed in feeds:
-        if feed.is_file():
-            assert feed.suffix in suffixes
+    for suffix in suffixes:
+        feed_path = (tmp_path / "dummy" / "feed").with_suffix(suffix)
+        assert feed_path.exists()
+        assert feed_path.is_file()

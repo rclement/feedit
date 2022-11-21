@@ -1,10 +1,11 @@
 import argparse
+import importlib
 import logging
 
 from pathlib import Path
 from feedgen.feed import FeedGenerator
 
-from . import urssaf_autoentrepreneur
+from . import urssaf, urssaf_autoentrepreneur
 from .common import PageEntry, PageIndex
 
 
@@ -41,11 +42,13 @@ def save_feed(feed: FeedGenerator, output: Path) -> None:
 
 
 def command_fetch(args: argparse.Namespace) -> None:
-    sources = [urssaf_autoentrepreneur]
+    default_sources = [urssaf.__name__, urssaf_autoentrepreneur.__name__]
+    sources = args.sources or default_sources
     for source in sources:
-        feed_index, feed_entries = source.fetch(max_workers=args.max_workers)
+        source_mod = importlib.import_module(source)
+        feed_index, feed_entries = source_mod.fetch(max_workers=args.max_workers)
         feed = generate_feed(feed_index, feed_entries)
-        filename = args.output / source.__name__.split(".")[-1]
+        filename = args.output / source.split(".")[-1]
         save_feed(feed, filename)
 
 
@@ -54,6 +57,14 @@ def main() -> None:
     subparsers = parser.add_subparsers(help="Commands", required=True, dest="commands")
 
     parser_fetch = subparsers.add_parser("fetch", help="Fetch feeds from sources")
+    parser_fetch.add_argument(
+        "--sources",
+        "-s",
+        help="Specify which sources to fetch (default is all except `feedit.dummy`)",
+        action="extend",
+        nargs="+",
+        type=str,
+    )
     parser_fetch.add_argument(
         "--output", "-o", help="Output directory", type=Path, required=True
     )
