@@ -2,6 +2,7 @@ import argparse
 import importlib
 import logging
 
+from operator import attrgetter
 from pathlib import Path
 from feedgen.feed import FeedGenerator
 
@@ -15,18 +16,24 @@ logger.addHandler(logging.NullHandler())
 
 
 def generate_feed(index: PageIndex, entries: list[PageEntry]) -> FeedGenerator:
+    sorted_entries = sorted(entries, key=attrgetter("date", "title"))
+    latest_entry = sorted_entries[-1]
+
     feed = FeedGenerator()
     feed.id(index.base_url)
     feed.title(index.title)
+    feed.updated(latest_entry.date)
+    feed.lastBuildDate(latest_entry.date)
     feed.link(href=index.base_url, rel="self")
     feed.description(index.description)
     feed.logo(index.logo_url)
     feed.language(index.language)
 
-    for entry in sorted(entries, key=lambda x: x.date):
+    for entry in sorted_entries:
         feed_entry = feed.add_entry()
         feed_entry.id(entry.link)
         feed_entry.published(entry.date)
+        feed_entry.updated(entry.date)
         feed_entry.title(entry.title)
         feed_entry.description(entry.summary)
         feed_entry.content(entry.summary)
