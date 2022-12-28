@@ -23,7 +23,7 @@ jobs:
           pipenv install --deploy
       - name: Fetch feeds
         run: |
-          pipenv run inv generate-feeds
+          pipenv run python -m feedit.main fetch --output feeds
       - name: Commit and push changes
         run: |-
           git config user.name "Automated"
