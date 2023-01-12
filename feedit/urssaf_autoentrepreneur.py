@@ -53,7 +53,7 @@ def fetch_page_entries(url: str) -> list[PageEntry]:
         PageEntry(
             title=(
                 cleanup_text(el.get_text())
-                if (el := entry.select_one(".bloc_actu_item h2"))
+                if (el := entry.select_one(".bloc_actu_item h3"))
                 else ""
             ),
             date=(
