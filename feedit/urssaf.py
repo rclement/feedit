@@ -33,7 +33,7 @@ def cleanup_date(text: str) -> str:
 def fetch_page_index() -> PageIndex:
     logger.info("fetching index page")
 
-    rv = requests.get(base_url)
+    rv = requests.get(base_url, timeout=30)
     body = rv.content.decode("utf-8")
     soup = BeautifulSoup(body, features="html.parser")
 
@@ -63,7 +63,7 @@ def fetch_page_index() -> PageIndex:
 def fetch_page_entries(url: str) -> list[PageEntry]:
     logger.info(f"fetch page entries: {url}")
 
-    rv = requests.get(url)
+    rv = requests.get(url, timeout=30)
     body = rv.content.decode("utf-8")
     soup = BeautifulSoup(body, "html.parser")
 
