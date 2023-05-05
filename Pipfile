@@ -20,7 +20,7 @@ pytest-cov = "==4.0.0"
 pytest-recording = "==0.12.2"
 safety = "==2.3.5"
 types-dateparser = "==1.1.4.9"
-types-requests = "==2.29.0.0"
+types-requests = "==2.30.0.0"
 types-beautifulsoup4 = "==4.12.0.4"
 
 [requires]
