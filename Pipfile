@@ -21,7 +21,7 @@ pytest-recording = "==0.13.0"
 safety = "==2.3.5"
 types-dateparser = "==1.1.4.10"
 types-requests = "==2.31.0.10"
-types-beautifulsoup4 = "==4.12.0.6"
+types-beautifulsoup4 = "==4.12.0.7"
 
 [requires]
 python_version = "3.10"
