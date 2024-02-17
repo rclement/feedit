@@ -33,7 +33,7 @@ jobs:
           git commit -m "Latest data: ${timestamp}" || exit 0
           git push
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: feeds
